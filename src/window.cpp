@@ -2,8 +2,10 @@
 
 #include <iostream>
 
-Window::Window() {
-	if (glfwInit() == GLFW_FALSE) {
+Window::Window()
+{
+	if (glfwInit() == GLFW_FALSE)
+	{
 		std::cerr << "Couldn't initialize glfw" << std::endl;
 		return;
 	}
@@ -16,7 +18,8 @@ Window::Window() {
 #endif
 
 	window = glfwCreateWindow(width, height, "Function Visualizer", NULL, NULL);
-	if (!window) {
+	if (!window)
+	{
 		std::cerr << "Couldn't create glfw window" << std::endl;
 		glfwTerminate();
 		return;
@@ -25,11 +28,12 @@ Window::Window() {
 	graphics = std::make_shared<Graphics>(window);
 }
 
-Window::~Window() {
+Window::~Window()
+{
 	glfwTerminate();
 }
 
-GLFWwindow* Window::GetWindow()
+GLFWwindow *Window::GetWindow()
 {
 	return window;
 }
@@ -41,7 +45,8 @@ std::shared_ptr<Graphics> Window::GetGraphics()
 
 void Window::Run()
 {
-	while (!glfwWindowShouldClose(window)) {
+	while (!glfwWindowShouldClose(window))
+	{
 		/* Update and draw code here */
 
 		graphics->Clear();

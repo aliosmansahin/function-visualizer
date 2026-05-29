@@ -3,7 +3,8 @@
 
 #include "window.h"
 
-int main() {
+int main()
+{
 	std::cout << "Function Visualizer!" << std::endl;
 
 	std::shared_ptr<Window> window = std::make_shared<Window>();

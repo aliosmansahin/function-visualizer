@@ -4,16 +4,18 @@
 
 #include <memory>
 
-class Window {
+class Window
+{
 public:
 	Window();
 	~Window();
-	GLFWwindow* GetWindow();
+	GLFWwindow *GetWindow();
 	std::shared_ptr<Graphics> GetGraphics();
 
 	void Run();
+
 private:
-	GLFWwindow* window = nullptr;
+	GLFWwindow *window = nullptr;
 	int width = 1024, height = 768;
 	std::shared_ptr<Graphics> graphics;
 };
