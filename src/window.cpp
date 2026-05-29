@@ -26,6 +26,14 @@ Window::Window()
 	}
 
 	graphics = std::make_shared<Graphics>(window);
+	if (!graphics->GenerateVisualizationFramebuffer(width, height)) {
+		glfwDestroyWindow(window);
+		window = nullptr; // glfw makes deallocations
+		glfwTerminate();
+		return;
+	}
+
+	interface = std::make_shared<Interface>(window);
 }
 
 Window::~Window()
@@ -47,9 +55,39 @@ void Window::Run()
 {
 	while (!glfwWindowShouldClose(window))
 	{
-		/* Update and draw code here */
+		/* Update program logic */
+
+		/* Update framebuffer first */
+		if (interface->GetViewportPanelSize().x != graphics->GetVisualizationWidth() ||
+			interface->GetViewportPanelSize().y != graphics->GetVisualizationHeight())
+		{
+			graphics->ResizeVisualizationFramebuffer(
+				interface->GetViewportPanelSize().x,
+				interface->GetViewportPanelSize().y
+			);
+		}
+
+		graphics->BindFramebuffer();
 
 		graphics->Clear();
+
+		/* Render function graphic here */
+
+		graphics->UnbindFramebuffer();
+
+		/* Update main frame (imgui etc...) */
+
+		interface->NewFrame();
+
+		graphics->Clear();
+
+		/* Add ImGui windows here */
+	
+		interface->DrawDockSpace(); // To docking windows
+
+		interface->DrawVisualizationWindow(graphics->GetVisualizationTexture());
+
+		interface->Render();
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();

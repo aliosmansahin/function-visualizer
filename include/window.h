@@ -1,6 +1,7 @@
 #pragma once
 
 #include "graphics.h"
+#include "interface.h"
 
 #include <memory>
 
@@ -18,4 +19,5 @@ private:
 	GLFWwindow *window = nullptr;
 	int width = 1024, height = 768;
 	std::shared_ptr<Graphics> graphics;
+	std::shared_ptr<Interface> interface;
 };
