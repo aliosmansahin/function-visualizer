@@ -9,6 +9,7 @@ set(SOURCE_FILES
     "${CMAKE_CURRENT_SOURCE_DIR}/src/window.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/graphics.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/interface.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/function_executor.cpp"
 )
 set(GLAD_SOURCE_FILE
     "${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/glad/src/glad.c"
